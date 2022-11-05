@@ -1,1 +1,1 @@
-rules = "PLACEHOLDER"
+rules = "Questions from https://opentdb.com/"
