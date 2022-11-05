@@ -3,7 +3,6 @@ from rules import rules
 import requests
 
 ''' To do:
-&quot;
 npc
 play again?
 remove special char from question
@@ -106,16 +105,18 @@ def ask_a_question_player():
     question_no_artifacts = []
     for item in question:
         if "&quot;" in item:
-            title = item.strip("&quot;")
-            title = "'" + title + "'"
-            question_no_artifacts.append(title)
+            word = item.replace("&quot;", "'")
+            question_no_artifacts.append(word)
+        elif "&#039;" in item:
+            word = item.replace("&#039;", "'")
+            question_no_artifacts.append(word)
         else:
             question_no_artifacts.append(item)
     question = " ".join(question_no_artifacts)
 
     print(question)
     answer = input().capitalize()
-    if answer == data.get("results")[0].get("correct_answer"):
+    if answer == data.get("results")[0].get("correct_answer") or answer == str(data.get("results")[0].get("correct_answer"))[0]:
         return True
     else:
         return False
